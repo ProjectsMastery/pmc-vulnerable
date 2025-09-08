@@ -36,7 +36,7 @@ Navigate into the project directory:
 ```bash
 cd pmc-vulnerable-api-lab
 ```
-npmnciesss required dependencies:
+Run this command to install required dependencies:
 ```bash
 npm install
 ```
@@ -45,25 +45,30 @@ npm install
 
 To start the server, run the following command from the project root:
 
-you ehconfirmationuld see a confirmation message:
+```bash
+   npm install
+```
+
+you should see a confirmation message:
 
 🚀 Server is running on http://localhost:3000
 
 You can now send requests to this local server using tools like Postman.
 
-📡 Endpoints
+# 📡 Endpoints
 
+```bash
 GET /
-
+```
 Returns a simple welcome message to confirm tcd
-
+```bash
 GET /api/users/:id
-
+```
 Retrieves a user’s profile by their unique ID.
-
+```bash
 Example: /api/users/1
-
-🔍 Intended Vulnerabilities
+```
+# 🔍 Intended Vulnerabilities
 
 This application is intentionally insecure and currently includes:
 
@@ -90,4 +95,3 @@ This application is intentionally insecure and built for educational purposes on
 
 > ❌ Do NOT use this code in production.
 Doing so will expose your applications and users to critical security risks.
-
