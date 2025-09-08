@@ -1,0 +1,15 @@
+{
+  "name": "pmc-vulnerable-api-lab",
+  "version": "1.0.0",
+  "description": "A deliberately vulnerable API for the PMC Security Academy.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "PMC Academy",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
+  }
+}
