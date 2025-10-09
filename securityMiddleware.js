@@ -13,4 +13,36 @@ const logRequestDetails = (req, res, next) => {
     next();
   };
   
-  module.exports = { logRequestDetails };
+
+  const jwt = require('jsonwebtoken');
+const JWT_SECRET = 'your-super-secret-key-that-no-one-should-know';
+
+const isAuthenticated = (req, res, next) => {
+  const authHeader = req.headers['authorization'];
+
+  if (!authHeader) {
+    return res.status(401).json({ message: 'Access denied. No token provided.' });
+  }
+
+  const token = authHeader.split(' ')[1];
+  if (!token) {
+    return res.status(401).json({ message: 'Access denied. Token is malformed.' });
+  }
+
+  try {
+    // This is the line that does all the work.
+    const decodedPayload = jwt.verify(token, JWT_SECRET);
+
+    // If verification is successful, the decoded payload is returned.
+    // We attach this payload to the request object itself.
+    req.user = decodedPayload;
+    
+    // We're authenticated! Pass the request to the actual endpoint.
+    next();
+  } catch (error) {
+    // If jwt.verify fails, it will throw an error.
+    return res.status(401).json({ message: 'Invalid token.' });
+  }
+};
+
+module.exports = { logRequestDetails, isAuthenticated };

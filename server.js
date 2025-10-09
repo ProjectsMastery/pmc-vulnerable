@@ -1,4 +1,5 @@
 // server.js
+const isAuthenticated = require('./securityMiddleware');
 const express = require('express');
 const cors = require('cors');
 const app = express();
@@ -47,7 +48,7 @@ app.post('/api/login', (req, res) => {
 // VULNERABILITY 1: Broken Object Level Authorization (BOLA/IDOR)
 // VULNERABILITY 2: Excessive Data Exposure
 // Any user can request any other user's data, and the API returns sensitive info like email and passwordHash.
-app.get('/api/users/:id', (req, res) => {
+app.get('/api/users/:id', isAuthenticated, (req, res) => {
     const userId = parseInt(req.params.id, 10);
     const user = users.find(u => u.id === userId);
 
